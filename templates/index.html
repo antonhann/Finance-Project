@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+            <table class = "table table-striped container">
+                <thead>
+                    <tr>
+                        <th class = "text-start">Symbol</th>
+                        <th class = "text-start">Name</th>
+                        <th class = "text-end">Shares</th>
+                        <th class = "text-end">Price</th>
+                        <th class = "text-end">TOTAL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in portfolio %}
+                        <tr>
+                            {% for i in col1 %}
+                                <td class = "text-start">{{ row[i] }}</th>
+                            {% endfor %}
+                            {% for i in ['shares'] %}
+                                <td class = "text-end">{{ row[i] }}</th>
+                            {% endfor%}
+                            {% for i in col2 %}
+                                <td class = "text-end">{{ row[i] | usd }}</th>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td class="border-0 fw-bold text-end" colspan="4">Cash</th>
+                        <td class="border-0 text-end">{{ cash | usd }}</th>
+                    </tr>
+                    <tr>
+                        <td class="border-0 fw-bold text-end" colspan="4">TOTAL</th>
+                        <td class="border-0 text-end">{{ real | usd }}</th>
+                    </tr>
+                </tfoot>
+            </table>
+{% endblock %}
